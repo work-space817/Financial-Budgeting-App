@@ -1,8 +1,8 @@
 export interface ISignUp{
-    email: String,
-    name: String,
-    password: String,
-    confirmPassword: String,
+    email: string,
+    firstName: string,
+    password: string,
+    confirmPassword: string,
     
     // photo: File,
     // currentBalacne: Number,

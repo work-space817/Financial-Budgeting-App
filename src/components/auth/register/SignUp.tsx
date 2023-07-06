@@ -1,145 +1,126 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import Input from "../../common/input/Input";
+import { ChangeEvent, useState } from "react";
 import { IRegisterError, ISignUp } from "./types";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import http from "../../../api/http";
+import Input from "../../common/input/Input";
 
-const SignUp = () => {
+const RegisterPage = () => {
   const init: ISignUp = {
     email: "",
-    name: "",
+    firstName: "",
     password: "",
     confirmPassword: "",
-
-    // currentBalacne: 0,
+    //     // currentBalacne: 0,
   };
-  const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<IRegisterError>();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    setEmail(e.target.value);
-    setName(e.target.value);
-    setConfirmPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onFormikSubmit = async (values: ISignUp) => {
     try {
-      const formData = new FormData();
-      formData.append("email", email);
-      formData.append("name", name);
-      formData.append("password", password);
-      formData.append("confirm", confirmPassword);
-      // Виконати POST-запит до серверу на локальному хості 5000
-      const response = await http.post("api/account/register", formData);
-
-      // Обробити успішну відповідь від серверу
-      console.log(response.data);
-
-      // Очистити поля після відправки форми
-      setEmail("");
-      setName("");
-      setPassword("");
-      setConfirmPassword("");
-    } catch (error) {
-      // Обробити помилку, якщо сталася
-      console.error(error);
+      const result = await http.post("api/account/register", values);
+      console.log("Result server good", result);
+    } catch (err: any) {
+      const error = err.response.data.errors as IRegisterError;
+      if (error.email) {
+        setFieldError("email", error.email[0]);
+        return;
+      }
+      setError(error);
+      console.log("Bad request", err);
     }
   };
 
+  const registerSchema = yup.object({
+    email: yup
+      .string()
+      .required("Вкажіть пошту")
+      .email("Введіть коректно пошту"),
+    firstName: yup.string().required("Вкажіть ім'я"),
+    password: yup
+      .string()
+      .min(5, "Пароль повинен містити мініму 5 символів")
+      .matches(/[0-9a-zA-Z]/, "Пароль може містить латинські символи і цифри")
+      .required("Поле не повинне бути пустим"),
+    confirmPassword: yup
+      .string()
+      .min(5, "Пароль повинен містити мініму 5 символів")
+      .oneOf([yup.ref("password")], () => "Паролі повинні співпадати")
+      .required("Поле не повинне бути пустим"),
+  });
+
+  const formik = useFormik({
+    initialValues: init,
+    onSubmit: onFormikSubmit,
+    validationSchema: registerSchema,
+  });
+
+  const {
+    values,
+    touched,
+    errors,
+    handleSubmit,
+    handleChange,
+    setFieldValue,
+    setFieldError,
+  } = formik;
+
   return (
     <>
+      <h1 className="text-center">Реєстрація на сайт</h1>
       <form onSubmit={handleSubmit}>
-        {/* <Input
-          type="email"
-          label="Email address"
-          value={email}
-          onChange={handleChange}
-          required
-          placeholder="Email address"
-          field={""}
-        />
         <Input
-          type="text"
-          label="Name"
-          value={name}
+          label="Електронна адреса"
+          field="email"
+          value={values.email}
           onChange={handleChange}
-          required
-          placeholder="Name"
-          field={""}
+          // errors={error?.email}
+          // error={errors.email}
         />
-        <Input
-          type="password"
-          label="Create password"
-          value={password}
-          onChange={handleChange}
-          required
-          placeholder="Password"
-          field={""}
-        />
-        <Input
-          type="password"
-          label="confirm password"
-          value={confirmPassword}
-          onChange={handleChange}
-          required
-          placeholder="confirm Password"
-          field={""}
-        /> */}
-        <div className="mb-3">
-          <label>
-            email:
-            <input
-              type="email"
-              value={password}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            name:
-            <input
-              type="text"
-              value={password}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Password:
-            <input
-              type="password"
-              value={password}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Password:
-            <input
-              type="password"
-              value={password}
-              onChange={handleChange}
-              required
-            />
-          </label>
+
+        <div className="">
+          <Input
+            label="Ім'я"
+            field="firstName"
+            value={values.firstName}
+            onChange={handleChange}
+            // error={errors.firstName}
+            touched={touched.firstName}
+          />
         </div>
 
-        <button type="submit">Sign up</button>
-      </form>
+        <div className="row">
+          <div className="col-md-6">
+            <Input
+              label="Пароль"
+              type="password"
+              field="password"
+              value={values.password}
+              onChange={handleChange}
+              // errors={error?.password}
+              // error={errors.password}
+              touched={touched.password}
+            />
+          </div>
+          <div className="col-md-6">
+            <Input
+              label="Підтвердження пароль"
+              type="password"
+              field="confirmPassword"
+              value={values.confirmPassword}
+              onChange={handleChange}
+              // errors={error?.confirmPassword}
+              // error={errors.confirmPassword}
+              touched={touched.confirmPassword}
+            />
+          </div>
+        </div>
 
-      <p>
-        Already have an account? <NavLink to="/login">Log in</NavLink>
-      </p>
+        <button type="submit" className="btn btn-primary">
+          Реєстрація
+        </button>
+      </form>
     </>
   );
 };
 
-export default SignUp;
+export default RegisterPage;

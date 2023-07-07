@@ -3,9 +3,9 @@ export interface ISignUp{
     firstName: string,
     password: string,
     confirmPassword: string,
-    
+    currentBalance: number,
     // photo: File,
-    // currentBalacne: Number,
+   
 }
   export interface IRegisterError {
     email: string[],

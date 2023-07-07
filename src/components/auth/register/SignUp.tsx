@@ -11,7 +11,7 @@ const RegisterPage = () => {
     firstName: "",
     password: "",
     confirmPassword: "",
-    //     // currentBalacne: 0,
+    currentBalance: 0,
   };
 
   const [error, setError] = useState<IRegisterError>();
@@ -35,7 +35,6 @@ const RegisterPage = () => {
       .string()
       .required("Вкажіть пошту")
       .email("Введіть коректно пошту"),
-    firstName: yup.string().required("Вкажіть ім'я"),
     password: yup
       .string()
       .min(5, "Пароль повинен містити мініму 5 символів")
@@ -46,6 +45,8 @@ const RegisterPage = () => {
       .min(5, "Пароль повинен містити мініму 5 символів")
       .oneOf([yup.ref("password")], () => "Паролі повинні співпадати")
       .required("Поле не повинне бути пустим"),
+    firstName: yup.string().required("Вкажіть ім'я"),
+    currentBalance: yup.number().required("Поле не повинне бути пустим"),
   });
 
   const formik = useFormik({
@@ -69,7 +70,7 @@ const RegisterPage = () => {
       <h1 className="text-center">Реєстрація на сайт</h1>
       <form onSubmit={handleSubmit}>
         <Input
-          label="Електронна адреса"
+          label="Email"
           field="email"
           value={values.email}
           onChange={handleChange}
@@ -77,21 +78,10 @@ const RegisterPage = () => {
           // error={errors.email}
         />
 
-        <div className="">
-          <Input
-            label="Ім'я"
-            field="firstName"
-            value={values.firstName}
-            onChange={handleChange}
-            // error={errors.firstName}
-            touched={touched.firstName}
-          />
-        </div>
-
         <div className="row">
           <div className="col-md-6">
             <Input
-              label="Пароль"
+              label="Password"
               type="password"
               field="password"
               value={values.password}
@@ -103,7 +93,7 @@ const RegisterPage = () => {
           </div>
           <div className="col-md-6">
             <Input
-              label="Підтвердження пароль"
+              label="Confirm password"
               type="password"
               field="confirmPassword"
               value={values.confirmPassword}
@@ -111,6 +101,27 @@ const RegisterPage = () => {
               // errors={error?.confirmPassword}
               // error={errors.confirmPassword}
               touched={touched.confirmPassword}
+            />
+          </div>
+          <div className="col-md-6">
+            <Input
+              label="Name"
+              field="firstName"
+              value={values.firstName}
+              onChange={handleChange}
+              // error={errors.firstName}
+              touched={touched.firstName}
+            />
+          </div>
+          <div className="col-md-6">
+            <Input
+              label="Current Balance"
+              type="number"
+              field="currentBalance"
+              value={values.currentBalance}
+              onChange={handleChange}
+              // error={errors.currentBalance}
+              touched={touched.currentBalance}
             />
           </div>
         </div>

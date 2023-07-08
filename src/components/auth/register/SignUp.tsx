@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import http from "../../../api/http";
 import Input from "../../common/input/Input";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const init: ISignUp = {
@@ -14,7 +15,9 @@ const RegisterPage = () => {
     currentBalance: 0,
   };
 
+  const navigate = useNavigate();
   const [error, setError] = useState<IRegisterError>();
+
   const onFormikSubmit = async (values: ISignUp) => {
     try {
       const result = await http.post("api/account/register", values);
@@ -63,6 +66,7 @@ const RegisterPage = () => {
     handleChange,
     setFieldValue,
     setFieldError,
+    setValues,
   } = formik;
 
   return (

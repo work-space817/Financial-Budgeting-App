@@ -2,39 +2,42 @@ import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AuthUserActionType, IAuthUser } from "../../store/reducers/types";
+import ModalWindow from "../../components/modal/ModalWindow";
+import AuthModal from "../../components/auth/AuthModal";
 
 const HomePage: FC = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
   return (
-    <div>
-      {isAuth ? (
-        <>
-          <button>
-            <Link
-              to="/auth"
-              onClick={(e) => {
-                // e.preventDefault();
-                localStorage.removeItem("token");
-                dispatch({ type: AuthUserActionType.LOGOUT_USER });
-                // navigate("/auth");
-              }}
-            >
-              Вихід
-            </Link>
-          </button>
-        </>
-      ) : (
-        <>
-          <button>
-            <Link to="/auth">Вхід</Link>
-          </button>
-          <button>
-            <Link to="/auth">Реєстрація</Link>
-          </button>
-        </>
-      )}
-    </div>
+    <>
+      <div>
+        <ModalWindow>{/* <AuthModal /> */}</ModalWindow>
+        {/* {isAuth ? (
+          <>
+            <button>
+              <Link
+                to="/auth"
+                onClick={(e) => {
+                  localStorage.removeItem("token");
+                  dispatch({ type: AuthUserActionType.LOGOUT_USER });
+                }}
+              >
+                Вихід
+              </Link>
+            </button>
+          </>
+        ) : (
+          <>
+            <button>
+              <Link to="/auth">Вхід</Link>
+            </button>
+            <button>
+              <Link to="/auth">Реєстрація</Link>
+            </button>
+          </>
+        )} */}
+      </div>
+    </>
   );
 };
 

@@ -3,3 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+.welcome_items {
+  /* transform: translateY(-25vh); */
+  transition: transform 750ms, opacity 500ms;
+}

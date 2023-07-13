@@ -11,7 +11,9 @@ const HomePage: FC = () => {
   return (
     <>
       <div>
-        <ModalWindow>{/* <AuthModal /> */}</ModalWindow>
+        <ModalWindow>
+          <AuthModal />
+        </ModalWindow>
         {/* {isAuth ? (
           <>
             <button>

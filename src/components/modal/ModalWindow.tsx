@@ -9,20 +9,20 @@ interface ModalProps {
 }
 
 const ModalWindow: FC<ModalProps> = ({ elements, children }) => {
-  // const modalRef = useRef(null);
-  // const showModal = () => {
-  //   const modal = modalRef.current;
-  //   if (modal != null) {
-  //     const bsModal = new Modal(modal, {});
-  //     bsModal.show();
-  //   }
-  // };
+  const modalRef = useRef(null);
+  const showModal = () => {
+    const modal = modalRef.current;
+    if (modal != null) {
+      const bsModal = new Modal(modal, {});
+      bsModal.show();
+    }
+  };
   return (
     <>
-      {/* <button className="btn btn-danger" onClick={showModal}>
+      <button className="btn btn-danger" onClick={showModal}>
         Delete
-      </button> */}
-      {/* <div className="modal fade" tabIndex={-1} ref={modalRef}>
+      </button>
+      <div className="modal fade" tabIndex={-1} ref={modalRef}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -37,7 +37,7 @@ const ModalWindow: FC<ModalProps> = ({ elements, children }) => {
             <div className="modal-body">{children}</div>
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 };

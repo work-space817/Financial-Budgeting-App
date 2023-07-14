@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthUserActionType, IAuthUser } from "../../store/reducers/types";
 import ModalWindow from "../../components/modal/ModalWindow";
 import AuthModal from "../../components/auth/AuthModal";
@@ -8,13 +8,14 @@ import AuthModal from "../../components/auth/AuthModal";
 const HomePage: FC = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
+
   return (
     <>
       <div>
-        <ModalWindow>
+        {/* <ModalWindow>
           <AuthModal />
-        </ModalWindow>
-        {/* {isAuth ? (
+        </ModalWindow> */}
+        {isAuth ? (
           <>
             <button>
               <Link
@@ -37,7 +38,7 @@ const HomePage: FC = () => {
               <Link to="/auth">Реєстрація</Link>
             </button>
           </>
-        )} */}
+        )}
       </div>
     </>
   );

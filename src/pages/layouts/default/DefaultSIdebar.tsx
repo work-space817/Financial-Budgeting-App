@@ -4,14 +4,16 @@ import SidebarSVG from "../../../helpers/selectorsSVG/SidebarSVG";
 const DefaultSidebar = () => {
   return (
     <>
-      <div className="sidebar-fonts col-auto col-md-3 col-xl-2  border-end ">
+      <div className="sidebar-fonts col-auto col-md-3 col-xl-2  border-end">
         <div className="d-flex flex-column align-items-center  pt-5 text-white min-vh-100 ">
-          <div className="cloud d-grid text-dark">
-            <div className="div1 pe-3">
+          <div className="cloud d-grid text-dark align-items-center">
+            <div className="div1">
               <SidebarSVG id="cloud"></SidebarSVG>{" "}
             </div>
-            <div className="div2">FBA -</div>
-            <div className="div3">Financial Budgeting App </div>
+            <div className="div2 d-none d-md-inline">FBA -</div>
+            <div className="div3 d-none d-md-inline ">
+              Financial Budgeting App{" "}
+            </div>
           </div>
 
           <ul
@@ -60,7 +62,7 @@ const DefaultSidebar = () => {
             <div className="sidebar-item p-2 rounded-3 w-100">
               <li className="nav-item ">
                 <Link
-                  to="/"
+                  to="/settings"
                   className="nav-link d-flex align-items-center px-0"
                 >
                   <SidebarSVG id="settings"></SidebarSVG>

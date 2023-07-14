@@ -1,17 +1,14 @@
 import React from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import DefaultLayout from "./pages/layouts/default/DefaultLayout";
 import HomePage from "./pages/home/HomePage";
 import AuthLayout from "./pages/layouts/authLayout/AuthLayout";
-import { APP_ENV } from "./env";
-import { useSelector } from "react-redux";
-import { IAuthUser } from "./store/reducers/types";
 import WelcomePage from "./pages/welcome/WelcomePage";
-import ModalWindow from "./components/modal/ModalWindow";
+import SettingsPage from "./pages/settings/SettingsPage";
 
 const App = () => {
-  const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
+  // const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
 
   return (
     <>
@@ -19,6 +16,7 @@ const App = () => {
         {/* {isAuth ? ( */}
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="settings" element={<SettingsPage />} />
           {/* модальне вікно з повідомленням що вже зареєстровані + редірект на головну */}
         </Route>
         {/*  ) : ( */}

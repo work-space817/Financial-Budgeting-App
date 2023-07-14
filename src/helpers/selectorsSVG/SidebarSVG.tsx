@@ -1,5 +1,3 @@
-import { swap } from "formik";
-
 interface Props {
   id: string;
 }

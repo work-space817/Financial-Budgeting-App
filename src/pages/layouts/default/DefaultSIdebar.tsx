@@ -27,7 +27,7 @@ const DefaultSidebar = () => {
                   className="nav-link d-flex align-items-center px-0"
                 >
                   <SidebarSVG id="overview"></SidebarSVG>
-                  <span className="ms-3 d-none d-sm-inline text-black-50 fs-5 ">
+                  <span className="ms-3 d-none d-md-inline text-black-50 fs-5 ">
                     Home page
                   </span>
                 </Link>
@@ -40,7 +40,7 @@ const DefaultSidebar = () => {
                   className="nav-link d-flex align-items-center px-0"
                 >
                   <SidebarSVG id="transactions"></SidebarSVG>
-                  <span className="ms-3 d-none d-sm-inline text-black-50 fs-5">
+                  <span className="ms-3 d-none d-md-inline text-black-50 fs-5">
                     Transactions
                   </span>
                 </Link>
@@ -53,7 +53,7 @@ const DefaultSidebar = () => {
                   className="nav-link d-flex align-items-center px-0"
                 >
                   <SidebarSVG id="statistic"></SidebarSVG>
-                  <span className="ms-3 d-none d-sm-inline text-black-50 fs-5">
+                  <span className="ms-3 d-none d-md-inline text-black-50 fs-5">
                     Statistic
                   </span>
                 </Link>
@@ -66,7 +66,7 @@ const DefaultSidebar = () => {
                   className="nav-link d-flex align-items-center px-0"
                 >
                   <SidebarSVG id="settings"></SidebarSVG>
-                  <span className="ms-3 d-none d-sm-inline text-black-50 fs-5">
+                  <span className="ms-3 d-none d-md-inline text-black-50 fs-5">
                     Settings
                   </span>
                 </Link>

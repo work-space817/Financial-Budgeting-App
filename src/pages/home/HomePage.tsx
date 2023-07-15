@@ -4,17 +4,19 @@ import { Link, useLocation } from "react-router-dom";
 import { AuthUserActionType, IAuthUser } from "../../store/reducers/types";
 import ModalWindow from "../../components/modal/ModalWindow";
 import AuthModal from "../../components/auth/AuthModal";
+import Card from "../../components/UI/Card";
 
 const HomePage: FC = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
 
   return (
-    <>
-      <div>
-        {/* <ModalWindow>
+    <div className="col-5">
+      <Card />
+      {/* <div>
+        <ModalWindow>
           <AuthModal />
-        </ModalWindow> */}
+        </ModalWindow>
         {isAuth ? (
           <>
             <button>
@@ -39,8 +41,8 @@ const HomePage: FC = () => {
             </button>
           </>
         )}
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 };
 

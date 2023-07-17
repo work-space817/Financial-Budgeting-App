@@ -13,7 +13,7 @@ const DefaultHeader = () => {
   return (
     <>
       <header>
-        <nav className="navbar border-bottom">
+        <nav className="navbar ">
           <div className="container-fluid">
             <p className="m-0 fs-1 ">Overview</p>
             <Link to="/settings" className="text-danger d-none d-md-inline">

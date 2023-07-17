@@ -11,7 +11,7 @@ const HomePage: FC = () => {
   const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
 
   return (
-    <div className="col-5">
+    <>
       <Card />
       {/* <div>
         <ModalWindow>
@@ -42,7 +42,7 @@ const HomePage: FC = () => {
           </>
         )}
       </div> */}
-    </div>
+    </>
   );
 };
 

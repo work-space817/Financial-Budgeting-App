@@ -6,6 +6,7 @@ import HomePage from "./pages/home/HomePage";
 import AuthLayout from "./pages/layouts/authLayout/AuthLayout";
 import WelcomePage from "./pages/welcome/WelcomePage";
 import SettingsPage from "./pages/settings/SettingsPage";
+import Transaction from "./pages/transaction/Transaction";
 
 const App = () => {
   // const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="transactions" element={<Transaction />} />
           {/* модальне вікно з повідомленням що вже зареєстровані + редірект на головну */}
         </Route>
         {/*  ) : ( */}

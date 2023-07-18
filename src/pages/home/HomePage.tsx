@@ -5,6 +5,8 @@ import { AuthUserActionType, IAuthUser } from "../../store/reducers/types";
 import ModalWindow from "../../components/modal/ModalWindow";
 import AuthModal from "../../components/auth/AuthModal";
 import Card from "../../components/UI/Card";
+import TransactionHistory from "../../components/UI/TransactionHistory";
+import Goal from "../../components/UI/Goal";
 
 const HomePage: FC = () => {
   const dispatch = useDispatch();
@@ -12,7 +14,15 @@ const HomePage: FC = () => {
 
   return (
     <>
-      <Card />
+      <div className="d-flex mb-5 gap-3">
+        <Card />
+        <div className="col-6">
+          <h4>Goals</h4>
+          {/* <ModalWindow /> */}
+          <Goal />
+        </div>
+      </div>
+      <TransactionHistory />
       {/* <div>
         <ModalWindow>
           <AuthModal />

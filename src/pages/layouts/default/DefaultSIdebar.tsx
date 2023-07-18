@@ -36,7 +36,7 @@ const DefaultSidebar = () => {
             <div className="sidebar-item p-2 rounded-3 w-100">
               <li className="nav-item">
                 <Link
-                  to="/"
+                  to="/transactions"
                   className="nav-link d-flex align-items-center px-0"
                 >
                   <SidebarSVG id="transactions"></SidebarSVG>

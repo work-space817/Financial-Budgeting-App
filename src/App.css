@@ -10,8 +10,7 @@ a {
   text-decoration: none;
 }
 .card {
-  background-color: rgba(126, 76, 215, 0.85);
-  width: 85%;
+  background-color: rgba(126, 76, 215, 0.75);
 }
 
 .custom-container-xxl {

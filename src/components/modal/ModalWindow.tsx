@@ -2,13 +2,12 @@ import { FC, useRef } from "react";
 import { Modal } from "bootstrap";
 import React from "react";
 
-interface ModalProps {
-  // elements?: (e: React.MouseEvent<HTMLElement>) => void;
-  elements?: any;
-  children?: React.ReactNode;
+interface IModalProps {
+  children: React.ReactNode;
+  title: string;
 }
 
-const ModalWindow: FC<ModalProps> = ({ elements, children }) => {
+const ModalWindow: FC<IModalProps> = ({ children, title }) => {
   const modalRef = useRef(null);
   const showModal = () => {
     const modal = modalRef.current;
@@ -26,7 +25,7 @@ const ModalWindow: FC<ModalProps> = ({ elements, children }) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Welcome</h5>
+              <h5 className="modal-title">{title}</h5>
               <button
                 type="button"
                 className="btn-close"

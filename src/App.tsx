@@ -2,11 +2,11 @@ import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import DefaultLayout from "./pages/layouts/default/DefaultLayout";
-import HomePage from "./pages/home/HomePage";
 import AuthLayout from "./pages/layouts/authLayout/AuthLayout";
 import WelcomePage from "./pages/welcome/WelcomePage";
 import SettingsPage from "./pages/settings/SettingsPage";
 import Transaction from "./pages/transaction/Transaction";
+import Overview from "./pages/home/Overview";
 
 const App = () => {
   // const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
@@ -16,7 +16,7 @@ const App = () => {
       <Routes>
         {/* {isAuth ? ( */}
         <Route path="/" element={<DefaultLayout />}>
-          <Route index element={<HomePage />} />
+          <Route index element={<Overview />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="transactions" element={<Transaction />} />
           {/* модальне вікно з повідомленням що вже зареєстровані + редірект на головну */}

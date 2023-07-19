@@ -6,9 +6,9 @@ import ModalWindow from "../../components/modal/ModalWindow";
 import AuthModal from "../../components/auth/AuthModal";
 import Card from "../../components/UI/Card";
 import TransactionHistory from "../../components/UI/TransactionHistory";
-import Goal from "../../components/UI/Goal";
+import GoalSlider from "../../components/UI/goals/GoalSlider";
 
-const HomePage: FC = () => {
+const Overview: FC = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
 
@@ -18,11 +18,14 @@ const HomePage: FC = () => {
         <Card />
         <div className="col-6">
           <h4>Goals</h4>
-          {/* <ModalWindow /> */}
-          <Goal />
+          <ModalWindow title="welcome">
+            <AuthModal />
+          </ModalWindow>
+          {/* <Goal /> */}
         </div>
       </div>
       <TransactionHistory />
+      <GoalSlider />
       {/* <div>
         <ModalWindow>
           <AuthModal />
@@ -56,4 +59,4 @@ const HomePage: FC = () => {
   );
 };
 
-export default HomePage;
+export default Overview;

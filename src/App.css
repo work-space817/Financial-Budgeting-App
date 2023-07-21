@@ -12,7 +12,10 @@
 a {
   text-decoration: none;
 }
-.card {
+button {
+  border: 0px;
+}
+.bg-custom {
   background-color: rgba(126, 76, 215, 0.75);
 }
 

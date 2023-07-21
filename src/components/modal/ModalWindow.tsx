@@ -5,9 +5,10 @@ import React from "react";
 interface IModalProps {
   children: React.ReactNode;
   title: string;
+  buttonText: string;
 }
 
-const ModalWindow: FC<IModalProps> = ({ children, title }) => {
+const ModalWindow: FC<IModalProps> = ({ children, title, buttonText }) => {
   const modalRef = useRef(null);
   const showModal = () => {
     const modal = modalRef.current;
@@ -18,8 +19,12 @@ const ModalWindow: FC<IModalProps> = ({ children, title }) => {
   };
   return (
     <>
-      <button className="btn btn-danger" onClick={showModal}>
-        Delete
+      <button
+        className="bg-custom rounded-4 px-2 py-2 text-white"
+        onClick={showModal}
+        // style={{ width: "24px" }}
+      >
+        <span>{buttonText}</span>
       </button>
       <div className="modal fade" tabIndex={-1} ref={modalRef}>
         <div className="modal-dialog">

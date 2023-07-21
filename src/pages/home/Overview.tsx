@@ -7,25 +7,30 @@ import AuthModal from "../../components/auth/AuthModal";
 import Card from "../../components/UI/Card";
 import TransactionHistory from "../../components/UI/TransactionHistory";
 import GoalSlider from "../../components/UI/goals/GoalSlider";
+import OperationMenu from "../../components/UI/OperationMenu";
 
 const Overview: FC = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
+  const date = new Date().getHours();
+  console.log("date: ", typeof date);
 
   return (
     <>
       <div className="d-flex mb-5 gap-3">
         <Card />
-        <div className="col-6">
-          <h4>Goals</h4>
-          <ModalWindow title="welcome">
+        <div className="col-6 ">
+          <OperationMenu />
+
+          {/* <ModalWindow title="welcome" buttonText={"AuthModal"}>
             <AuthModal />
-          </ModalWindow>
+          </ModalWindow> */}
           {/* <Goal /> */}
+          <GoalSlider />
         </div>
       </div>
       <TransactionHistory />
-      <GoalSlider />
+
       {/* <div>
         <ModalWindow>
           <AuthModal />

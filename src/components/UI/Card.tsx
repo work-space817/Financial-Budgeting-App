@@ -1,6 +1,3 @@
-import React from "react";
-import CardSVG from "../../helpers/selectorsSVG/UI/CardSVG";
-
 const Card = () => {
   return (
     <>
@@ -10,7 +7,7 @@ const Card = () => {
           <div className="row py-4">
             <div className="col-8 border-end d-flex justify-content-center align-items-center px-4">
               {/* <CardSVG id="ArrowLeft" /> */}
-              <div className="card shadow w-100 rounded-5 text-white">
+              <div className="bg-custom shadow w-100 rounded-5 text-white">
                 <div className="p-1 p-sm-4">
                   <h5 className="mb-0">cloudcash</h5>
 

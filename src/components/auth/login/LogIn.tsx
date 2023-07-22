@@ -3,10 +3,10 @@ import { ILogIn, IUser } from "./types";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import InputGroup from "../../common/input/Input";
 import http from "../../../api/http";
 import setAuthToken from "../../../api/setAuthToken";
 import { AuthUserActionType } from "../../../store/reducers/types";
+import InputComponent from "../../common/input/Input";
 
 const LogIn = () => {
   const init: ILogIn = {
@@ -54,14 +54,14 @@ const LogIn = () => {
             {error}
           </div>
         )}
-        <InputGroup
+        <InputComponent
           label="Електронна адреса"
           field="email"
           value={data.email}
           onChange={onChangeHandler}
         />
 
-        <InputGroup
+        <InputComponent
           label="Пароль"
           type="password"
           field="password"

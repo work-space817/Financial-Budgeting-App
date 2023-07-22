@@ -20,9 +20,8 @@ const ModalWindow: FC<IModalProps> = ({ children, title, buttonText }) => {
   return (
     <>
       <button
-        className="bg-custom rounded-4 px-2 py-2 text-white"
+        className="bg-custom rounded-4 p-2 text-white"
         onClick={showModal}
-        // style={{ width: "24px" }}
       >
         <span>{buttonText}</span>
       </button>

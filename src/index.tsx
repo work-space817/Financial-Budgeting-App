@@ -8,12 +8,13 @@ import { store } from "./store";
 import { BrowserRouter, useNavigate } from "react-router-dom";
 import setAuthToken from "./api/setAuthToken";
 import { AuthUserActionType } from "./store/reducers/types";
+import jwt_decode from "jwt-decode";
 import { IUser } from "./components/auth/login/types";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
-  // const user = jwt_decode<IUser>(localStorage.token);
-  // store.dispatch({ type: AuthUserActionType.LOGIN_USER, payload: user });
+  const user = jwt_decode<IUser>(localStorage.token);
+  store.dispatch({ type: AuthUserActionType.LOGIN_USER, payload: user });
 }
 
 const root = ReactDOM.createRoot(

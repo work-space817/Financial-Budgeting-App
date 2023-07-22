@@ -23,9 +23,8 @@ const DefaultHeader = () => {
         <nav className="navbar ">
           <div className="container-fluid">
             <p className="m-0 fs-1 ">{splitCurrentPage}</p>
-            <Link to="/settings" className="text-danger d-none d-md-inline">
-              {/* {user?.name} */}
-              example@gmail.com
+            <Link to="/settings" className="text-dark d-none d-md-inline">
+              {user?.name}
               <HeaderSVG id="defaultUserIcon"></HeaderSVG>
             </Link>
           </div>

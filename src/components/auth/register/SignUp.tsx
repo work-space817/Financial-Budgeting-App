@@ -3,8 +3,8 @@ import { IRegisterError, ISignUp } from "./types";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import http from "../../../api/http";
-import Input from "../../common/input/Input";
 import { useNavigate } from "react-router-dom";
+import InputComponent from "../../common/input/Input";
 
 const RegisterPage = () => {
   const init: ISignUp = {
@@ -22,6 +22,7 @@ const RegisterPage = () => {
     try {
       const result = await http.post("api/account/register", values);
       console.log("Result server good", result);
+      navigate("/");
     } catch (err: any) {
       const error = err.response.data.errors as IRegisterError;
       if (error.email) {
@@ -73,7 +74,7 @@ const RegisterPage = () => {
     <>
       <h1 className="text-center">Реєстрація на сайт</h1>
       <form onSubmit={handleSubmit}>
-        <Input
+        <InputComponent
           label="Email"
           field="email"
           value={values.email}
@@ -84,7 +85,7 @@ const RegisterPage = () => {
 
         <div className="row">
           <div className="col-md-6">
-            <Input
+            <InputComponent
               label="Password"
               type="password"
               field="password"
@@ -96,7 +97,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="col-md-6">
-            <Input
+            <InputComponent
               label="Confirm password"
               type="password"
               field="confirmPassword"
@@ -108,7 +109,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="col-md-6">
-            <Input
+            <InputComponent
               label="Name"
               field="firstName"
               value={values.firstName}
@@ -118,7 +119,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="col-md-6">
-            <Input
+            <InputComponent
               label="Current Balance"
               type="number"
               field="currentBalance"

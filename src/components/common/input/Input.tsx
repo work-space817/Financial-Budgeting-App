@@ -11,7 +11,7 @@ interface InputGroupProps extends InputHTMLAttributes<HTMLInputElement> {
   touched?: boolean | undefined;
 }
 
-const Input: FC<InputGroupProps> = ({
+const InputComponent: FC<InputGroupProps> = ({
   label,
   type = "text",
   field,
@@ -53,4 +53,4 @@ const Input: FC<InputGroupProps> = ({
   );
 };
 
-export default Input;
+export default InputComponent;

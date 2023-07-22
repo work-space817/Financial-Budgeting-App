@@ -12,8 +12,6 @@ import OperationMenu from "../../components/UI/OperationMenu";
 const Overview: FC = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
-  const date = new Date().getHours();
-  console.log("date: ", typeof date);
 
   return (
     <>
@@ -30,11 +28,7 @@ const Overview: FC = () => {
         </div>
       </div>
       <TransactionHistory />
-
-      {/* <div>
-        <ModalWindow>
-          <AuthModal />
-        </ModalWindow>
+      <div>
         {isAuth ? (
           <>
             <button>
@@ -45,21 +39,14 @@ const Overview: FC = () => {
                   dispatch({ type: AuthUserActionType.LOGOUT_USER });
                 }}
               >
-                Вихід
+                вихід
               </Link>
             </button>
           </>
         ) : (
-          <>
-            <button>
-              <Link to="/auth">Вхід</Link>
-            </button>
-            <button>
-              <Link to="/auth">Реєстрація</Link>
-            </button>
-          </>
+          <></>
         )}
-      </div> */}
+      </div>
     </>
   );
 };

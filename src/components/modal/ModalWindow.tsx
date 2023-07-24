@@ -10,11 +10,19 @@ interface IModalProps {
 
 const ModalWindow: FC<IModalProps> = ({ children, title, buttonText }) => {
   const modalRef = useRef(null);
+
   const showModal = () => {
     const modal = modalRef.current;
     if (modal != null) {
       const bsModal = new Modal(modal, {});
       bsModal.show();
+    }
+  };
+  const closeModal = () => {
+    const modal = modalRef.current;
+    if (modal != null) {
+      const bsModal = Modal.getInstance(modal);
+      bsModal?.hide();
     }
   };
   return (

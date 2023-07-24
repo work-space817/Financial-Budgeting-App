@@ -21,7 +21,6 @@ const NewGoalOperation = () => {
     try {
       const result = await http.post("api/goals/add", data);
       console.log("result: ", result);
-      // navigator("/admin/categories/list");
     } catch (err: any) {
       console.log("Bad request", err);
     }

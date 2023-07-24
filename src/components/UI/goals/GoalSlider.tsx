@@ -5,11 +5,9 @@ import http from "../../../api/http";
 import { IGoal } from "./types";
 import Goal from "./Goal";
 
-const items = ["item_1", "item_2", "item_3", "item_4"];
-
 const GoalSlider: React.FC = () => {
   const [goalsList, setGoalsList] = useState<IGoalOperation[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
 
   useEffect(() => {
     console.log("Working useEffect");
@@ -23,7 +21,7 @@ const GoalSlider: React.FC = () => {
 
   const handlePreviousGoal = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + items.length) % items.length
+      (prevIndex) => (prevIndex - 1 + goalsList.length) % goalsList.length
     );
   };
   const handleNextGoal = () => {
@@ -32,10 +30,16 @@ const GoalSlider: React.FC = () => {
 
   function getVisibleItems() {
     const visibleItems = [];
-    for (let i = currentIndex; i < currentIndex + 3; i++) {
-      const itemIndex = i >= goalsList.length ? i - goalsList.length : i;
+    const itemsToShow = Math.min(goalsList.length, 3);
+
+    for (let i = 0; i < itemsToShow; i++) {
+      const itemIndex =
+        currentIndex + i >= goalsList.length
+          ? currentIndex + i - goalsList.length
+          : currentIndex + i;
       visibleItems.push(goalsList[itemIndex]);
     }
+
     return visibleItems;
   }
 

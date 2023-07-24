@@ -5,6 +5,10 @@ import * as yup from "yup";
 import http from "../../../api/http";
 import { useNavigate } from "react-router-dom";
 import InputComponent from "../../common/input/Input";
+import setAuthToken from "../../../api/setAuthToken";
+import { IUser } from "../login/types";
+import { useDispatch } from "react-redux";
+import { AuthUserActionType } from "../../../store/reducers/types";
 
 const RegisterPage = () => {
   const init: ISignUp = {
@@ -16,12 +20,17 @@ const RegisterPage = () => {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [error, setError] = useState<IRegisterError>();
 
   const onFormikSubmit = async (values: ISignUp) => {
     try {
       const result = await http.post("api/account/register", values);
       console.log("Result server good", result);
+      const token = result.data.token as string;
+      setAuthToken(token);
+      const user = jwt_decode<IUser>(token);
+      dispatch({ type: AuthUserActionType.LOGIN_USER, payload: user });
       navigate("/");
     } catch (err: any) {
       const error = err.response.data.errors as IRegisterError;
@@ -140,3 +149,6 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+function jwt_decode<T>(token: string) {
+  throw new Error("Function not implemented.");
+}
